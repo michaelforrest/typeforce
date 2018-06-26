@@ -35,7 +35,7 @@ function TfTypeError (type, value, valueTypeName) {
   valueTypeName = valueTypeName || getValueTypeName(value)
   this.message = tfErrorString(type, value, valueTypeName)
 
-  Error.captureStackTrace(this, TfTypeError)
+  Error.captureStackTrace && Error.captureStackTrace(this, TfTypeError)
   this.__type = type
   this.__value = value
   this.__valueTypeName = valueTypeName
@@ -59,7 +59,7 @@ function TfPropertyTypeError (type, property, label, value, valueTypeName) {
     this.message = 'Unexpected property "' + property + '"'
   }
 
-  Error.captureStackTrace(this, TfTypeError)
+  Error.captureStackTrace && Error.captureStackTrace(this, TfTypeError)
   this.__label = label
   this.__property = property
   this.__type = type
@@ -90,7 +90,7 @@ function tfSubError (e, property, label) {
     )
   }
 
-  Error.captureStackTrace(e)
+  Error.captureStackTrace && Error.captureStackTrace(e)
   return e
 }
 
